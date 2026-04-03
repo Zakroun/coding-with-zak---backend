@@ -1,14 +1,10 @@
 {
   "name": "codingwithzak-backend",
   "version": "1.0.0",
-  "description": "Serverless backend for CodingWithZak contact form",
-  "type": "module",
-  "scripts": {
-    "start": "vercel dev",
-    "dev": "vercel dev"
+  "engines": {
+    "node": "18.x"
   },
   "dependencies": {
-    "nodemailer": "^6.10.1",
-    "dotenv": "^16.4.5"
+    "nodemailer": "^6.9.13"
   }
 }
