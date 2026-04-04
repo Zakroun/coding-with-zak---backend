@@ -15,16 +15,89 @@ async function sendContactEmail({ name, email, subject, message }) {
     replyTo: email,
     subject: `[CodingWithZak] ${subject}`,
     html: `
-      <div style="font-family:sans-serif;max-width:600px;margin:auto">
-        <h2 style="border-bottom:2px solid #000;padding-bottom:8px">New Contact Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p style="background:#f4f4f4;padding:16px;border-left:4px solid #000">${message}</p>
+  <html>
+    <head>
+      <style>
+        /* Reset */
+        body, p, h1, h2, h3 {
+          margin: 0; padding: 0;
+        }
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f7;
+          color: #333333;
+        }
+        .container {
+          max-width: 600px;
+          margin: 40px auto;
+          background: #ffffff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          border: 1px solid #e0e0e0;
+        }
+        .header {
+          background-color: #1a73e8;
+          color: #ffffff;
+          padding: 20px;
+          text-align: center;
+        }
+        .header h2 {
+          font-size: 24px;
+        }
+        .content {
+          padding: 20px;
+        }
+        .content p {
+          margin-bottom: 16px;
+          line-height: 1.5;
+        }
+        .message-box {
+          background-color: #f4f4f4;
+          padding: 16px;
+          border-left: 4px solid #1a73e8;
+          border-radius: 4px;
+          font-style: italic;
+        }
+        .footer {
+          text-align: center;
+          font-size: 12px;
+          color: #888888;
+          padding: 15px 20px;
+          border-top: 1px solid #e0e0e0;
+        }
+        @media (max-width: 640px) {
+          .container {
+            margin: 20px;
+          }
+          .header h2 {
+            font-size: 20px;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h2>New Contact Message</h2>
+        </div>
+        <div class="content">
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Message:</strong></p>
+          <div class="message-box">
+            ${message}
+          </div>
+        </div>
+        <div class="footer">
+          &copy; ${new Date().getFullYear()} CodingWithZak. All rights reserved.
+        </div>
       </div>
-    `,
-  })
+    </body>
+  </html>
+  `,
+  });
 }
 
 module.exports = { sendContactEmail }
