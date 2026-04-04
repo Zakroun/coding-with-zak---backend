@@ -18,13 +18,12 @@ async function sendContactEmail({ name, email, subject, message }) {
   <html>
     <head>
       <style>
-        /* Reset */
         body, p, h1, h2, h3 {
           margin: 0; padding: 0;
         }
         body {
           font-family: Arial, sans-serif;
-          background-color: #f5f5f7;
+          background-color: #f5f5f5;
           color: #333333;
         }
         .container {
@@ -33,17 +32,17 @@ async function sendContactEmail({ name, email, subject, message }) {
           background: #ffffff;
           border-radius: 8px;
           overflow: hidden;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-          border: 1px solid #e0e0e0;
+          border: 1px solid #d0d0d0;
         }
         .header {
-          background-color: #1a73e8;
+          background-color: #000000;
           color: #ffffff;
           padding: 20px;
           text-align: center;
         }
         .header h2 {
           font-size: 24px;
+          font-weight: normal;
         }
         .content {
           padding: 20px;
@@ -53,18 +52,19 @@ async function sendContactEmail({ name, email, subject, message }) {
           line-height: 1.5;
         }
         .message-box {
-          background-color: #f4f4f4;
+          background-color: #f0f0f0;
           padding: 16px;
-          border-left: 4px solid #1a73e8;
+          border-left: 4px solid #000000;
           border-radius: 4px;
           font-style: italic;
+          color: #111111;
         }
         .footer {
           text-align: center;
           font-size: 12px;
           color: #888888;
           padding: 15px 20px;
-          border-top: 1px solid #e0e0e0;
+          border-top: 1px solid #d0d0d0;
         }
         @media (max-width: 640px) {
           .container {
