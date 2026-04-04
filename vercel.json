@@ -5,23 +5,5 @@
             "src": "api/**/*.js",
             "use": "@vercel/node"
         }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "methods": [
-                "OPTIONS"
-            ],
-            "dest": "/api/$1",
-            "headers": {
-                "Access-Control-Allow-Origin": "https://codingwiithzak.vercel.app",
-                "Access-Control-Allow-Methods": "POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type"
-            }
-        },
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/$1"
-        }
     ]
 }

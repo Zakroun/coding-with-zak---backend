@@ -8,16 +8,17 @@
 
 ```
 backend/
+|── api/
+|   └── contact.js           # Contact form API
 ├── config/
 │   └── mailer.js            # Nodemailer transporter configuration
-├── controllers/
-│   └── contactController.js # Contact form logic & email sending
-├── routes/
-│   └── contact.js           # /api/contact route definition
+|── node_modules/
+|── .env                     # Environment variables
 ├── .env.example             # Environment variable template
 ├── .gitignore
 ├── package.json
-└── server.js                # Express app entry point
+├── README.md
+└── vercel.json
 ```
 
 ---
