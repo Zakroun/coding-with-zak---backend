@@ -10,8 +10,8 @@ const transporter = nodemailer.createTransport({
 
 async function sendContactEmail({ name, email, subject, message }) {
   await transporter.sendMail({
-    from: `"${name}" <${process.env.MAIL_USER}>`,
-    to: process.env.MAIL_USER,
+    from: `"${name}" <${process.env.SMTP_USER}>`,
+    to: process.env.SMTP_USER,
     replyTo: email,
     subject: `[CodingWithZak] ${subject}`,
     html: `
