@@ -3,10 +3,20 @@ import mongoose from 'mongoose'
 let isConnected = false
 
 const connectDB = async () => {
-    if (isConnected) return
+    try {
+        if (isConnected) return
 
-    const db = await mongoose.connect(process.env.MONGO_URI)
-    isConnected = db.connections[0].readyState
+        console.log("Connecting to DB...")
+
+        const db = await mongoose.connect(process.env.MONGO_URI)
+
+        isConnected = db.connections[0].readyState
+
+        console.log("✅ DB connected")
+    } catch (err) {
+        console.error("❌ DB ERROR:", err)
+        throw err
+    }
 }
 
 const TestSchema = new mongoose.Schema({
@@ -16,32 +26,28 @@ const TestSchema = new mongoose.Schema({
 const TestModel = mongoose.models.Test || mongoose.model('Test', TestSchema)
 
 export default async function handler(req, res) {
-    await connectDB()
+    try {
+        await connectDB()
 
-    if (req.method === 'POST') {
-        try {
+        if (req.method === 'POST') {
             const { name } = req.body
 
             const doc = await TestModel.create({ name })
 
-            return res.status(200).json({
-                success: true,
-                data: doc
-            })
-        } catch (err) {
-            console.error(err)
-            return res.status(500).json({ error: err.message })
+            return res.status(200).json({ success: true, data: doc })
         }
-    }
 
-    if (req.method === 'GET') {
-        try {
-            const data = await TestModel.find().sort({ createdAt: -1 })
+        if (req.method === 'GET') {
+            const data = await TestModel.find()
             return res.status(200).json(data)
-        } catch (err) {
-            return res.status(500).json({ error: err.message })
         }
-    }
 
-    return res.status(405).json({ error: 'Method not allowed' })
+        return res.status(405).json({ error: 'Method not allowed' })
+
+    } catch (err) {
+        console.error("🔥 GLOBAL ERROR:", err)
+        return res.status(500).json({
+            error: err.message || "Server crashed"
+        })
+    }
 }
