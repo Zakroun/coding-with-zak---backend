@@ -37,15 +37,15 @@ module.exports = async (req, res) => {
         if (req.method !== 'POST') {
             return res.status(405).json({ error: 'Method not allowed' })
         }
-        const { name, email, subject, message } = req.body
+        const { name, email, subject, message, language } = req.body
         // Validate required fields
-        if (!name || !email || !subject || !message) {
+        if (!name || !email || !subject || !message || !language) {
             return res.status(400).json({ error: 'All fields are required' })
         }
         // Save contact message to database
-        await Contact.create({ name, email, subject, message })
+        await Contact.create({ name, email, subject, message, language })
         // Send contact email
-        await sendContactEmail({ name, email, subject, message })
+        await sendContactEmail({ name, email, subject, message, language })
         return res.status(200).json({ success: true })
     } catch (err) {
         console.error("Error in contact API:", err)

@@ -5,6 +5,7 @@ const ContactSchema = new mongoose.Schema({
     email: String,
     subject: String,
     message: String,
+    language: String,
 }, { timestamps: true })
 
 module.exports = mongoose.models.Contact || mongoose.model('Contact', ContactSchema)
