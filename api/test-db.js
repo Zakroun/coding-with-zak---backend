@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-// connect DB
 let isConnected = false
+
 const connectDB = async () => {
     if (isConnected) return
 
@@ -9,14 +9,13 @@ const connectDB = async () => {
     isConnected = db.connections[0].readyState
 }
 
-// simple schema
 const TestSchema = new mongoose.Schema({
     name: String,
 }, { timestamps: true })
 
 const TestModel = mongoose.models.Test || mongoose.model('Test', TestSchema)
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
     await connectDB()
 
     if (req.method === 'POST') {
